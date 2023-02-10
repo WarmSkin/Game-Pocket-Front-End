@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-const NavStick = ({ user }) => {
+const NavStick = ({ user, handleLogout }) => {
   const [route, setRoute] = useState(0)
 
   const routes = [
@@ -9,6 +9,7 @@ const NavStick = ({ user }) => {
     '/profiles',
     '/leaderboard',
     '/my-page',
+    ''
   ]
 
   const destination = `${routes[route]}`
@@ -33,6 +34,12 @@ const NavStick = ({ user }) => {
               destination === '/'
               ?
               'HOME'
+              :
+              destination === ''
+              ?
+              <p onClick={() => handleLogout()}>
+                LOG OUT
+              </p>
               :
               destination
               .replace('/', '')
